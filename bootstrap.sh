@@ -22,3 +22,8 @@ cp /vagrant/files/pg_hba.conf /etc/postgresql/9.1/main/pg_hba.conf
 cp /vagrant/files/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf
 
 service postgresql restart
+
+# Redis
+apt-get -y install redis-server
+cp /vagrant/files/redis.conf /etc/redis/redis.conf
+service redis-server restart

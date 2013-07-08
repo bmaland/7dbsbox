@@ -13,7 +13,14 @@ See specific instructions for the various databases below.
 
 ## PostgreSQL
 
-Connect to localhost on port 5432 using `vagrant` as the username. Trust
-authentication is enabled, so no password is necessary.
+Connect to localhost on port 5432 (which is the default port) using `vagrant` as
+the username. Trust authentication is enabled, so no password is necessary.
 
-Using the command line: `psql --host localhost --user vagrant`
+Connect using the command line: `psql --host localhost --user vagrant`
+
+## Redis
+
+Redis runs on its default port (6379) and allows connections from any host
+without any authentication.
+
+Connect using the command line: `redis-cli`
