@@ -33,6 +33,16 @@ apt-get -y install mongodb-server
 cp /vagrant/files/mongodb.conf /etc/mongodb.conf
 service mongodb restart
 
+# Neo4j
+apt-get -y install openjdk-7-jre-headless
+
+if [ ! -e /home/vagrant/neo4j-community-1.9.1-unix.tar.gz ]; then
+  su vagrant -c "cd /home/vagrant && wget http://dist.neo4j.org/neo4j-community-1.9.1-unix.tar.gz"
+  su vagrant -c "sed -i.bak 's/#org.neo4j.server.webserver.address=0.0.0.0/org.neo4j.server.webserver.address=0.0.0.0/g' /home/vagrant/neo4j-community-1.9.1/conf/neo4j-server.properties"
+fi
+
+su vagrant -c "/home/vagrant/neo4j-community-1.9.1/bin/neo4j start"
+
 # Redis
 apt-get -y install redis-server
 cp /vagrant/files/redis.conf /etc/redis/redis.conf

@@ -18,6 +18,8 @@ See specific instructions for the various databases below.
 
 ## PostgreSQL
 
+Version: 9.1.9.
+
 Connect to localhost on port 5432 (which is the default port) using `vagrant` as
 the username. Trust authentication is enabled, so no password is necessary.
 
@@ -25,9 +27,13 @@ Connect using the command line: `psql --host localhost --user vagrant`
 
 ## CouchDB
 
+Version: 1.0.1.
+
 The web admin interface (futon) is available at: http://localhost:5984/_utils/
 
 ## MongoDB
+
+Version: 2.0.4.
 
 Connect using the command line: `mongo`
 
@@ -36,7 +42,15 @@ The admin web console is also available on the default port:
 
 ## Redis
 
+Version: 2.2.12.
+
 Redis runs on its default port (6379) and allows connections from any host
 without any authentication.
 
 Connect using the command line: `redis-cli`
+
+## Neo4j
+
+Version: 1.9.1.
+
+The web admin interface is available at: http://localhost:7474/webadmin/
