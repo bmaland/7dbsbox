@@ -23,6 +23,11 @@ cp /vagrant/files/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf
 
 service postgresql restart
 
+# Couchdb
+apt-get -y install couchdb
+cp /vagrant/files/local.ini /etc/couchdb/local.ini
+service couchdb restart
+
 # Mongodb
 apt-get -y install mongodb-server
 cp /vagrant/files/mongodb.conf /etc/mongodb.conf

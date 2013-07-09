@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
   config.vm.network :forwarded_port, guest: 5432, host: 5432   # postgresql
+  config.vm.network :forwarded_port, guest: 5984, host: 5984   # couchdb
   config.vm.network :forwarded_port, guest: 27017, host: 27017 # mongodb
   config.vm.network :forwarded_port, guest: 28017, host: 28017 # mongodb admin web console
   config.vm.network :forwarded_port, guest: 6379, host: 6379   # redis

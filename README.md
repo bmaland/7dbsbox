@@ -23,6 +23,10 @@ the username. Trust authentication is enabled, so no password is necessary.
 
 Connect using the command line: `psql --host localhost --user vagrant`
 
+## CouchDB
+
+The web admin interface (futon) is available at: http://localhost:5984/_utils/
+
 ## MongoDB
 
 Connect using the command line: `mongo`
