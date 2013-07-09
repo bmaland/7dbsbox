@@ -28,4 +28,9 @@ Vagrant.configure("2") do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
 
   config.vm.provision :shell, :path => "bootstrap.sh"
+
+  # Use 1gb ram instead of vagrant's 512mb default
+  config.vm.provider "virtualbox" do |vm|
+    vm.customize ["modifyvm", :id, "--memory", 1024]
+  end
 end
