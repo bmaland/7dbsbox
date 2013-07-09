@@ -5,8 +5,10 @@ Vagrant.configure("2") do |config|
   config.vm.box = "precise32"
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
-  config.vm.network :forwarded_port, guest: 5432, host: 5432 # postgresql
-  config.vm.network :forwarded_port, guest: 6379, host: 6379 # redis
+  config.vm.network :forwarded_port, guest: 5432, host: 5432   # postgresql
+  config.vm.network :forwarded_port, guest: 27017, host: 27017 # mongodb
+  config.vm.network :forwarded_port, guest: 28017, host: 28017 # mongodb admin web console
+  config.vm.network :forwarded_port, guest: 6379, host: 6379   # redis
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.

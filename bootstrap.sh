@@ -23,6 +23,11 @@ cp /vagrant/files/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf
 
 service postgresql restart
 
+# Mongodb
+apt-get -y install mongodb-server
+cp /vagrant/files/mongodb.conf /etc/mongodb.conf
+service mongodb restart
+
 # Redis
 apt-get -y install redis-server
 cp /vagrant/files/redis.conf /etc/redis/redis.conf

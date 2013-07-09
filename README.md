@@ -4,7 +4,12 @@ This is a [Vagrant](http://www.vagrantup.com) box for experimenting with the
 databases described in the Pragmatic Studios book
 [Seven Databases in Seven Weeks](http://pragprog.com/book/rwdata/seven-databases-in-seven-weeks).
 
-Instructions:
+The default ports for the various databases will be forwarded to your local
+machine (the VM host), so that you transparently can connect to `localhost`.
+
+Work in progress, all databases aren't supported yet.
+
+**Instructions:**
 
 * [Download and install Vagrant](http://downloads.vagrantup.com) (only tested with 1.2.x)
 * Clone this repo and run `vagrant up` from the root dir.
@@ -17,6 +22,13 @@ Connect to localhost on port 5432 (which is the default port) using `vagrant` as
 the username. Trust authentication is enabled, so no password is necessary.
 
 Connect using the command line: `psql --host localhost --user vagrant`
+
+## MongoDB
+
+Connect using the command line: `mongo`
+
+The admin web console is also available on the default port:
+`http://localhost:28017`
 
 ## Redis
 
