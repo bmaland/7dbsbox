@@ -3,25 +3,32 @@
 apt-get -y update
 
 # Postgresql
-apt-get -y install postgresql-9.1 postgresql-contrib-9.1
 
-# Set up postgres user + db with hstore
-if ! su postgres -c "psql template1 -c '\dx'" | grep hstore > /dev/null; then
-  su postgres -c "psql -d template1 -c 'CREATE EXTENSION hstore;'"
+if [ ! -e /etc/apt/source.list.d/pgdg.list ]; then
+  cp /vagrant/files/pgdg.list /etc/apt/sources.list.d/pgdg.list
+  wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -
+  apt-get -y update
+
+  apt-get -y install postgresql-contrib-9.3
+
+  # Set up postgres user + db with hstore
+  if ! su postgres -c "psql template1 -c '\dx'" | grep hstore > /dev/null; then
+   su postgres -c "psql -d template1 -c 'CREATE EXTENSION hstore;'"
+  fi
+
+  if ! su postgres -c "psql template1 -c '\du'" | grep vagrant > /dev/null;  then
+   su postgres -c "createuser vagrant -s"
+  fi
+
+  if ! su postgres -c "psql -l" | grep vagrant > /dev/null; then
+   su postgres -c "createdb vagrant"
+  fi
+
+  sudo cp /vagrant/files/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf
+  sudo cp /vagrant/files/postgresql.conf /etc/postgresql/9.3/main/postgresql.conf
+
+  service postgresql restart
 fi
-
-if ! su postgres -c "psql template1 -c '\du'" | grep vagrant > /dev/null;  then
-  su postgres -c "createuser vagrant -s"
-fi
-
-if ! su postgres -c "psql -l" | grep vagrant > /dev/null; then
-  su postgres -c "createdb vagrant"
-fi
-
-cp /vagrant/files/pg_hba.conf /etc/postgresql/9.1/main/pg_hba.conf
-cp /vagrant/files/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf
-
-service postgresql restart
 
 # Couchdb
 apt-get -y install couchdb
@@ -50,7 +57,7 @@ service redis-server restart
 
 # Riak
 
-sudo apt-get install libssl0.9.8
+apt-get install libssl0.9.8
 
 if [ ! -e /home/vagrant/riak_1.4.0-1_amd64.deb ]; then
   su vagrant -c "cd /home/vagrant && wget http://s3.amazonaws.com/downloads.basho.com/riak/1.4/1.4.0/ubuntu/precise/riak_1.4.0-1_amd64.deb"
@@ -63,10 +70,10 @@ fi
 
 if [ ! -e /etc/apt/sources.list.d/cloudera.list ]; then
   cp /vagrant/files/hosts /etc/hosts
-  apt-get -y install curl
-  curl -s http://archive.cloudera.com/cdh4/ubuntu/lucid/amd64/cdh/archive.key | apt-key add -
   cp /vagrant/files/cloudera.list /etc/apt/sources.list.d/cloudera.list
-  apt-get -y install hbase-rest
+  wget --quiet -O - http://archive.cloudera.com/cdh4/ubuntu/lucid/amd64/cdh/archive.key | apt-key add -
+  apt-get -y update
+  apt-get -y install openjdk-7-jre-headless hbase-rest
 fi
 
 JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 /usr/lib/hbase/bin/hbase-daemon.sh start master

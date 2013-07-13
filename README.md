@@ -16,7 +16,7 @@ See specific instructions for the various databases below.
 
 ## PostgreSQL
 
-Version: 9.1.9.
+Version: 9.3, with the hstore extension enabled.
 
 Connect to localhost on port 5432 (which is the default port) using `vagrant` as
 the username. Trust authentication is enabled, so no password is necessary.
