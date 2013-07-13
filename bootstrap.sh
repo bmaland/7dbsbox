@@ -58,3 +58,16 @@ if [ ! -e /home/vagrant/riak_1.4.0-1_amd64.deb ]; then
   cp /vagrant/files/app.config /etc/riak/app.config
   service riak start
 fi
+
+# HBase
+
+if [ ! -e /etc/apt/sources.list.d/cloudera.list ]; then
+  cp /vagrant/files/hosts /etc/hosts
+  apt-get -y install curl
+  curl -s http://archive.cloudera.com/cdh4/ubuntu/lucid/amd64/cdh/archive.key | apt-key add -
+  cp /vagrant/files/cloudera.list /etc/apt/sources.list.d/cloudera.list
+  apt-get -y install hbase-rest
+fi
+
+JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 /usr/lib/hbase/bin/hbase-daemon.sh start master
+service hbase-rest start

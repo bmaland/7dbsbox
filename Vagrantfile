@@ -13,6 +13,10 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 7474,  host: 7474  # neo4j
   config.vm.network :forwarded_port, guest: 8087,  host: 8087  # riak
   config.vm.network :forwarded_port, guest: 8098,  host: 8098  # riak
+  config.vm.network :forwarded_port, guest: 8080,  host: 8080  # hbase rest
+  config.vm.network :forwarded_port, guest: 60010, host: 60010 # hbase master
+  config.vm.network :forwarded_port, guest: 60020, host: 60020 # hbase region server
+  config.vm.network :forwarded_port, guest: 60030, host: 60030 # hbase info web
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -31,8 +35,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, :path => "bootstrap.sh"
 
-  # Use 1gb ram instead of vagrant's 512mb default
+  # Use more ram than vagrant's 512mb default
   config.vm.provider "virtualbox" do |vm|
-    vm.customize ["modifyvm", :id, "--memory", 1024]
+    vm.customize ["modifyvm", :id, "--memory", 1536]
   end
 end

@@ -7,8 +7,6 @@ databases described in the Pragmatic Studios book
 The default ports for the various databases will be forwarded to your local
 machine (the VM host), so that you transparently can connect to `localhost`.
 
-Work in progress, all databases aren't supported yet.
-
 **Instructions:**
 
 * [Download and install Vagrant](http://downloads.vagrantup.com) (only tested with 1.2.x)
@@ -40,13 +38,23 @@ Connect using the command line: `mongo`
 The admin web console is also available on the default port:
 `http://localhost:28017`
 
-## Redis
-
 ## Riak
 
 Version: 1.4.0
 
 The admin web interface is available at: http://localhost:8098/admin/
+
+## HBase
+
+Version: 0.94.6
+
+REST API interface: http://localhost:8080/
+
+Master status: http://localhost:60010/master-status
+
+Region server status: http://localhost:60030/rs-status
+
+## Redis
 
 Version: 2.2.12.
 
