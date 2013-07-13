@@ -42,6 +42,12 @@ The admin web console is also available on the default port:
 
 ## Redis
 
+## Riak
+
+Version: 1.4.0
+
+The admin web interface is available at: http://localhost:8098/admin/
+
 Version: 2.2.12.
 
 Redis runs on its default port (6379) and allows connections from any host
