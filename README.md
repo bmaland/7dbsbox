@@ -7,6 +7,10 @@ databases described in the Pragmatic Studios book
 The default ports for the various databases will be forwarded to your local
 machine (the VM host), so that you transparently can connect to `localhost`.
 
+1.5gb ram is set aside for the VM so that it can run all seven databases relatively comfortable.
+If this amount is too high for you, simply edit the value inside `Vagrantfile` and uncomment
+the databases you don't need in `bootstrap.sh`.
+
 **Instructions:**
 
 * [Download and install Vagrant](http://downloads.vagrantup.com) (only tested with 1.2.x)
@@ -68,3 +72,11 @@ Connect using the command line: `redis-cli`
 Version: 1.9.1.
 
 The web admin interface is available at: http://localhost:7474/webadmin/
+
+# License
+
+Developed by [Bjørn Mæland](http://bmaland.com), sponsored by [Knowit](http://knowit.no).
+
+Copyright 2013 Knowit
+
+MIT
